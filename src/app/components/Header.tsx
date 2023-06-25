@@ -1,55 +1,69 @@
-"use client";
-import { FC } from "react";
-import * as React from "react";
-import Image from "next/image";
-import { Logo } from "../../../ImageConfig";
-import Link from "next/link";
-import { Space } from "antd";
+import React from "react";
 
-import DefaultButton from "./DefaultButton";
-import { useRouter } from "next/navigation";
-import DropDown from "./DropDown";
-// import PersonAdd from "@mui/icons-material/PersonAdd";
-// import Settings from "@mui/icons-material/Settings";
-// import Logout from "@mui/icons-material/Logout";
-
-interface HeaderProps {}
-
-const Header: FC<HeaderProps> = () => {
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const open = Boolean(anchorEl);
-  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-  const router = useRouter();
+const Header: React.FC = () => {
   return (
-    <>
-      <nav className="bg-slate-500 flex justify-between p-4">
-        <div>
-          <Link href={"/#"} className="logo text-3xl inline-block">
-            <Image src={Logo} width={50} height={50} alt="logo" />
-          </Link>
-        </div>
-        <Space className="site-button-ghost-wrapper" wrap>
-          <DefaultButton> Ullu</DefaultButton>
+    <header className="header" data-header>
+      <div className="container">
+        <h1>
+          <a href="#" className="logo">
+            Ullu<span className="span">.</span>
+          </a>
+        </h1>
 
-          <DefaultButton test={() => router.push("/dashboard")}>
-            Express
-          </DefaultButton>
-          <DefaultButton test={() => router.push("google.com")}>
-            Food
-          </DefaultButton>
-          <DefaultButton>Deliver</DefaultButton>
-          <DropDown />
-        </Space>
-      </nav>
-    </>
+        <nav className="navbar" data-navbar>
+          <ul className="navbar-list">
+            <li className="nav-item">
+              <a href="#home" className="navbar-link" data-nav-link>
+                Home
+              </a>
+            </li>
+
+            <li className="nav-item">
+              <a href="#about" className="navbar-link" data-nav-link>
+                About Us
+              </a>
+            </li>
+
+            <li className="nav-item">
+              <a href="#food-menu" className="navbar-link" data-nav-link>
+                Shop
+              </a>
+            </li>
+
+            <li className="nav-item">
+              <a href="#blog" className="navbar-link" data-nav-link>
+                Blog
+              </a>
+            </li>
+
+            <li className="nav-item">
+              <a href="#contact" className="navbar-link" data-nav-link>
+                Contact Us
+              </a>
+            </li>
+          </ul>
+        </nav>
+
+        <div className="header-btn-group">
+          <button className="search-btn" aria-label="Search" data-search-btn>
+            {/* <ion-icon name="search-outline"></ion-icon> */}
+          </button>
+
+          <button className="btn btn-hover">Reservation</button>
+
+          <button
+            className="nav-toggle-btn"
+            aria-label="Toggle Menu"
+            data-menu-toggle-btn
+          >
+            <span className="line top"></span>
+            <span className="line middle"></span>
+            <span className="line bottom"></span>
+          </button>
+        </div>
+      </div>
+    </header>
   );
 };
-
-<></>;
 
 export default Header;
